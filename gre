@@ -1,0 +1,9 @@
+#Turn up forwarders! 
+auto tun1
+iface tun1 inet statc
+address {tunnel net}
+mtu 1400
+up ifconfig tu1 multicast
+pre-up iptunnel add tun1 mode gre local {while ip} remote {remote ip} dev {outside device}
+pointopoint  {remote ip}
+post-down iptunnel del tun1
